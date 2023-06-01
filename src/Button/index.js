@@ -1,6 +1,6 @@
-const Button = (props) => (
+const Button = ({text}) => (
   <p>
-    <button className="form__button">Przelicz!</button>
+    <button className="form__button">{text}</button>
   </p>
 );
 

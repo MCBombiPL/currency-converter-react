@@ -1,7 +1,7 @@
-const Input = (props) => (
+const Input = ({inputText}) => (
   <p>
     <label>
-      Wpisz ilość PLN:{" "}
+      {inputText}
       <input
         className="form__input"
         required

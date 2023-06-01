@@ -1,7 +1,7 @@
-const Select = (props) => (
+const Select = ({selectText}) => (
   <p>
     <label>
-      Wybierz walutę:{" "}
+      {selectText}
       <select required className="form__select">
         <option name="currency" value="EUR">
           Euro

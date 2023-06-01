@@ -2,18 +2,21 @@ import Input from "./Input";
 import Button from "./Button";
 import Select from "./Select";
 import Header from "./Header";
+import Result from "./Result";
+import Fieldset from "./Fieldset";
+import FormContainer from "./FormContainer";
 
 function App() {
   return (
-    <form className="form">
-        <Header title="Kalkulator walut"/>
-        <fieldset className="form__fieldset">
-            <Select />
-            <Input />
-            <Button />
-            <p></p>
-        </fieldset>
-    </form>
+    <FormContainer>
+      <Header title="Kalkulator walut" />
+      <Fieldset>
+        <Select selectText="Wybierz walutę: " />
+        <Input inputText="Wpisz ilość PLN: " />
+        <Button text="Przelicz!" />
+        <Result />
+      </Fieldset>
+    </FormContainer>
   );
 }
 
