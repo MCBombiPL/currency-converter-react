@@ -1,6 +1,6 @@
-const Button = ({text}) => (
+const Button = ({text, type}) => (
   <p>
-    <button className="form__button">{text}</button>
+    <button className="form__button" type={type}>{text}</button>
   </p>
 );
 
