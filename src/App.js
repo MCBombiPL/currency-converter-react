@@ -20,9 +20,9 @@ function App() {
     setAmount(target.value);
   };
 
-  const calculateResult = () => {
+  const calculateResult = (amount, selectedCurrency) => {
     if (!amount) {
-      return "";
+      return null;
     }
 
     switch (selectedCurrency) {
@@ -42,14 +42,14 @@ function App() {
         return amount / 0.43;
 
       default:
-        return "";
+        return null;
     }
   };
 
   const handleConversion = (event) => {
     event.preventDefault();
-    const convertedResult = calculateResult();
-    setResult(convertedResult);
+    const convertedResult = calculateResult(parseFloat(amount), selectedCurrency);
+    setResult(convertedResult !== "" ? convertedResult : 0);
   };
 
   return (
