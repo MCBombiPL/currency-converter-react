@@ -1,7 +1,7 @@
 const Result = ({ result, amount, selectedCurrency }) => {
   return (
     <p>
-      {result !== null && (
+      {result !== null && result !== "" && (
         <strong>
           {amount} PLN = {result.toFixed(2)} {selectedCurrency}
         </strong>
