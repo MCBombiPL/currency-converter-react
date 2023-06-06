@@ -1,9 +1,9 @@
 const Result = ({ result, amount, selectedCurrency }) => {
   return (
     <p>
-              <strong>
-          {amount} PLN = {result.toFixed(2)} {selectedCurrency}
-        </strong>
+      <strong>
+        {amount} PLN = {result.toFixed(2)} {selectedCurrency}
+      </strong>
     </p>
   );
 };

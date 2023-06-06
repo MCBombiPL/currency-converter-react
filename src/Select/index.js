@@ -1,22 +1,26 @@
-const Select = ({selectText}) => (
+const Select = ({selectText, selectedCurrency, onSelectChange}) => (
   <p>
     <label>
       {selectText}
-      <select required className="form__select">
-        <option name="currency" value="EUR">
-          Euro
+      <select
+      required
+      className="form__select"
+      value={selectedCurrency}
+      onChange={onSelectChange}>
+        <option>
+          EUR
         </option>
-        <option name="currency" value="USD">
-          Dolar amerykański
+        <option>
+          USD
         </option>
-        <option name="currency" value="GBP">
-          Funt brytyjski
+        <option>
+          GBP
         </option>
-        <option name="currency" value="CZK">
-          Korona czeska
+        <option>
+          CZK
         </option>
-        <option name="currency" value="SEK">
-          Korona szwedzka
+        <option>
+          SEK
         </option>
       </select>
     </label>

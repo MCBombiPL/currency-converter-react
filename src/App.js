@@ -12,7 +12,7 @@ function App() {
   const [amount, setAmount] = useState(0);
   const [result, setResult] = useState(0);
 
-  const currencyChange = ({ target }) => {
+  const onSelectChange = ({ target }) => {
     setCurrency(target.value);
   };
 
@@ -21,59 +21,47 @@ function App() {
   };
 
   const calculateResult = (amount, selectedCurrency) => {
-    if (!amount) {
+    const conversionRates = {
+      EUR: 4.79,
+      USD: 4.45,
+      GBP: 5.36,
+      CZK: 0.2,
+      SEK: 0.43,
+    };
+  
+    if (!amount || !conversionRates[selectedCurrency]) {
       return null;
     }
-
-    switch (selectedCurrency) {
-      case "EUR":
-        return amount / 4.79;
-
-      case "USD":
-        return amount / 4.45;
-
-      case "GBP":
-        return amount / 5.36;
-
-      case "CZK":
-        return amount / 0.2;
-
-      case "SEK":
-        return amount / 0.43;
-
-      default:
-        return null;
-    }
+  
+    return amount / conversionRates[selectedCurrency];
   };
 
-  const handleConversion = (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
-    const convertedResult = calculateResult(parseFloat(amount), selectedCurrency);
-    setResult(convertedResult !== "" ? convertedResult : 0);
+    const convertedResult = calculateResult(amount, selectedCurrency);
+    setResult(convertedResult);
   };
 
   return (
-    <FormContainer onSubmit={handleConversion}>
+    <FormContainer onFormSubmit={onFormSubmit}>
       <Header title="Kalkulator walut" />
       <Fieldset>
         <Select
           selectText="Wybierz walutę: "
-          value={selectedCurrency}
-          onChange={currencyChange}
+          selectedCurrency={selectedCurrency}
+          onSelectChange={onSelectChange}
         />
         <Input
           inputText="Wpisz ilość PLN: "
           amount={amount}
           onInputChange={onInputChange}
         />
-        <Button text="Przelicz!" type="submit" onClick={handleConversion} />
-        {result !== 0 && (
+        <Button text="Przelicz!" type="submit" onClick={onFormSubmit} />
         <Result
-        result={result}
-        amount={amount}
-        selectedCurrency={selectedCurrency}
+          result={result}
+          amount={amount}
+          selectedCurrency={selectedCurrency}
         />
-        )}
       </Fieldset>
     </FormContainer>
   );
