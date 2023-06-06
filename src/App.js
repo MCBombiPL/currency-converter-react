@@ -8,9 +8,9 @@ import FormContainer from "./FormContainer";
 import { useState } from "react";
 
 function App() {
-  const [selectedCurrency, setCurrency] = useState("");
-  const [amount, setAmount] = useState("");
-  const [result, setResult] = useState("");
+  const [selectedCurrency, setCurrency] = useState("EUR");
+  const [amount, setAmount] = useState(0);
+  const [result, setResult] = useState(0);
 
   const currencyChange = ({ target }) => {
     setCurrency(target.value);
@@ -63,11 +63,17 @@ function App() {
         />
         <Input
           inputText="Wpisz ilość PLN: "
-          value={amount}
-          onChange={onInputChange}
+          amount={amount}
+          onInputChange={onInputChange}
         />
-        <Button text="Przelicz!" type="submit" />
-        <Result result={result} amount={amount} selectedCurrency={selectedCurrency} />
+        <Button text="Przelicz!" type="submit" onClick={handleConversion} />
+        {result !== 0 && (
+        <Result
+        result={result}
+        amount={amount}
+        selectedCurrency={selectedCurrency}
+        />
+        )}
       </Fieldset>
     </FormContainer>
   );

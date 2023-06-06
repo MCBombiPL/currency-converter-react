@@ -1,4 +1,4 @@
-const Input = ({inputText}) => (
+const Input = ({inputText, amount, onInputChange}) => (
   <p>
     <label>
       {inputText}
@@ -8,6 +8,8 @@ const Input = ({inputText}) => (
         type="number"
         min="0"
         step="0.01"
+        value={amount}
+        onChange={onInputChange}
       />
     </label>
   </p>

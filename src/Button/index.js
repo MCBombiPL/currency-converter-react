@@ -1,6 +1,8 @@
-const Button = ({text, type}) => (
+const Button = ({text, type, onClick}) => (
   <p>
-    <button className="form__button" type={type}>{text}</button>
+    <button className="form__button" type={type} onClick={onClick}>
+      {text}
+      </button>
   </p>
 );
 
