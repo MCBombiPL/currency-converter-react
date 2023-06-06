@@ -10,7 +10,7 @@ import { useState } from "react";
 function App() {
   const [selectedCurrency, setCurrency] = useState("EUR");
   const [amount, setAmount] = useState(0);
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState(null);
 
   const onSelectChange = ({ target }) => {
     setCurrency(target.value);
@@ -30,7 +30,7 @@ function App() {
     };
 
     if (!amount || !conversionRates[selectedCurrency]) {
-      return null;
+      return 0;
     }
 
     return amount / conversionRates[selectedCurrency];
@@ -39,7 +39,11 @@ function App() {
   const onFormSubmit = (event) => {
     event.preventDefault();
     const convertedResult = calculateResult(amount, selectedCurrency);
-    setResult(convertedResult);
+    setResult({
+      finalResult: convertedResult,
+      moneyAmount: amount,
+      currency: selectedCurrency,
+    });
   };
 
   return (
@@ -57,11 +61,13 @@ function App() {
           onInputChange={onInputChange}
         />
         <Button text="Przelicz!" type="submit" onClick={onFormSubmit} />
-        <Result
-          result={result}
-          amount={amount}
-          selectedCurrency={selectedCurrency}
-        />
+        {result && (
+          <Result
+            result={result.finalResult}
+            amount={result.moneyAmount}
+            selectedCurrency={result.currency}
+          />
+        )}
       </Fieldset>
     </FormContainer>
   );
