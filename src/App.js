@@ -28,11 +28,11 @@ function App() {
       CZK: 0.2,
       SEK: 0.43,
     };
-  
+
     if (!amount || !conversionRates[selectedCurrency]) {
       return null;
     }
-  
+
     return amount / conversionRates[selectedCurrency];
   };
 
